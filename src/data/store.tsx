@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { Dimension, IndicatorsData } from "../types/types";
 import { APIURL, ALLINDICATORS } from "../config";
-import { dataTransform } from "./dataTransform";
+import { dataTransformByMonth } from "./dataTransform";
 
 interface StoreState {
   loading: boolean;
@@ -63,7 +63,7 @@ const useAppStore = create<StoreState>((set, get) => ({
       `indicators?start=2020-01-01&end=2024-01-01&dimensions=${id}&${ALLINDICATORS}`,
       (data) => {
         set({
-          indicatorsData: dataTransform(data),
+          indicatorsData: dataTransformByMonth(data),
         });
       }
     );

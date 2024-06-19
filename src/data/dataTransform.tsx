@@ -1,7 +1,9 @@
 import { IndicatorsData } from "../types/types";
 import { IND_CO2, IND_MAL, IND_FEM, IND_TOT } from "../config";
 
-export const dataTransform = (data: any): IndicatorsData => {
+// NOTE : Regroup by by year is missing yet. This is where we will have to regroup data by year.
+
+export const dataTransformByMonth = (data: any): IndicatorsData => {
   // Here let's first regroupe Male and Females to calculate sums and ratio :
   // Note : this calculation is not optimized AND SECURED and it supposes that any female record matches a defined male count
   // But we will preferably ask back end to send a count, or a different data model with male and females regrouped under one date
