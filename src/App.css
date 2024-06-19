@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+body {
+  background-color: #f5efe6;
+}
+
+/* # # # # # # # # # # SELECTOR BOX  */
+.selectorBox {
+  border-radius: 0.5rem;
+  background-color: #6a645a;
+  margin-bottom: 0.5rem;
+}
+
+.countryBox {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.country {
+  width: 5rem;
+}
+
+.dimensionSelector {
+  padding: 0.5rem;
+  display: flex;
+  border-radius: 0.5rem;
+  background-color: #f5efe6;
+  cursor: pointer;
+}
+.selected {
+  background-color: #272624;
+  color: white;
+}
+
+.dimensionSelector:hover {
+  background-color: #e3cd8b;
+}
+
+/* # # # # # # # # # # INDICATORS  */
+
+.indicatorsContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+
+  gap: 0.5rem;
+}
+
+.indicatorsContainer > div {
+  display: flex;
+  gap: 0.5rem;
+}
+.indicatorContainer {
+  background-color: #e3cd8b;
+  width: 50%;
+  min-height: 10rem;
+  max-height: 20rem;
+}
