@@ -1,4 +1,5 @@
-export const APIURL: string = "http://localhost:8080";
+export const APIURL: string =
+  import.meta.env.VITE__APP_API_KEY || "http://localhost:8080";
 export const ALLINDICATORS: string =
   "indicators=co2_emissions&indicators=total_revenue&indicators=female_headcount&indicators=male_headcount";
 

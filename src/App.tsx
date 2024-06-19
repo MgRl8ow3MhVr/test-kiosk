@@ -24,13 +24,14 @@ function App() {
     <>
       <h1>WELCOME TO YOUR DASHBOARD</h1>
       <div className="selectorBox">
-        {countries.map((country) => (
-          <div className="countryBox">
+        {countries.map((country, i) => (
+          <div className="countryBox" key={i}>
             <div className="country">{country}</div>
             {dimensions
               .filter((dim: Dimension) => dim.country === country)
-              .map((dim: Dimension) => (
+              .map((dim: Dimension, j) => (
                 <div
+                  key={j}
                   className={`dimensionSelector ${
                     selectedDimensionId === dim.id && "selected"
                   }`}

@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { Dimension, IndicatorsData } from "../types/types";
 import { APIURL, ALLINDICATORS } from "../config";
 import { dataTransform } from "./dataTransform";
