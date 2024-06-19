@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import "./App.css";
-import { BarChart } from "@mui/x-charts/BarChart";
 import { Dimension } from "./types/types";
 import useAppStore from "./data/store";
+import Graph from "./components/Graph";
+import { IND_NAMES } from "./config";
 
 function App() {
   const {
@@ -11,14 +12,13 @@ function App() {
     countries,
     selectedDimensionId,
     selectDimension,
+    indicatorsData,
   } = useAppStore();
 
   // get all dimensions at landing
   useEffect(() => {
     getDimensions();
   }, []);
-
-  console.log();
 
   return (
     <>
@@ -36,7 +36,6 @@ function App() {
                   }`}
                   onClick={() => {
                     selectDimension(dim.id);
-                    console.log(dim.id, typeof dim.id);
                   }}
                 >
                   <div>{dim.business_unit}</div>
@@ -47,20 +46,21 @@ function App() {
       </div>
       <div className="indicatorsContainer">
         <div>
-          <div className="indicatorContainer">
-            Indicator 1
-            <BarChart
-              series={[{ data: [35, 44, 24, 34] }]}
-              height={200}
-              xAxis={[{ data: ["Q1", "Q2", "Q3", "Q4"], scaleType: "band" }]}
-              margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-            />
-          </div>
-          <div className="indicatorContainer">Indicator 2</div>
+          <Graph
+            data={indicatorsData.co2Emissions}
+            title={IND_NAMES.co2Emissions}
+          />
+          <Graph
+            data={indicatorsData.totalRevenue}
+            title={IND_NAMES.totalRevenue}
+          />
         </div>
         <div>
-          <div className="indicatorContainer">Indicator 3</div>
-          <div className="indicatorContainer">Indicator 4</div>
+          <Graph data={indicatorsData.headcount} title={IND_NAMES.headcount} />{" "}
+          <Graph
+            data={indicatorsData.genderRatio}
+            title={IND_NAMES.genderRatio}
+          />{" "}
         </div>
       </div>
     </>

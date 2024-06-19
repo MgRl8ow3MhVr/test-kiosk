@@ -1,6 +1,7 @@
 import create from "zustand";
-import { Dimension, Indicator } from "../types/types";
+import { Dimension, IndicatorsData } from "../types/types";
 import { APIURL, ALLINDICATORS } from "../config";
+import { dataTransform } from "./dataTransform";
 
 interface StoreState {
   loading: boolean;
@@ -8,7 +9,7 @@ interface StoreState {
   dimensions: Dimension[];
   countries: string[];
   selectedDimensionId: string;
-  indicatorData: Indicator[];
+  indicatorsData: IndicatorsData;
   fetchApi: (
     suffix: string,
     successFunction: (data: any) => void
@@ -23,7 +24,7 @@ const useAppStore = create<StoreState>((set, get) => ({
   dimensions: [],
   selectedDimensionId: "",
   countries: [],
-  indicatorData: [],
+  indicatorsData: {},
   fetchApi: async (suffix: string, successFunction: (data: any) => void) => {
     // Only get methods. Update function with method if more methods
     set({ loading: true, error: null });
@@ -58,16 +59,12 @@ const useAppStore = create<StoreState>((set, get) => ({
 
   selectDimension: (id: string) => {
     set({ selectedDimensionId: id });
-    console.log("id", id);
-    // http://localhost:8080/indicators?start=2020-01-01&end=2024-01-01&dimensions=1&
-
     get().fetchApi(
       `indicators?start=2020-01-01&end=2024-01-01&dimensions=${id}&${ALLINDICATORS}`,
       (data) => {
-        console.log("DATA RECEIVED", data);
-        // set({
-        //   indicatorData: data?.results || [],
-        // }),
+        set({
+          indicatorsData: dataTransform(data),
+        });
       }
     );
   },
